@@ -46,6 +46,7 @@ const App = () => {
     }
     personService.del(id).then((deletedPerson) => {
       // console.log(deletedPerson)
+      deletedPerson
       setPersons(persons.filter(p => p.id !== id))
       setNotifType(true)
       setNotification(
@@ -57,13 +58,13 @@ const App = () => {
     })
     .catch(error => {
       setNotifType(false)
-      setNotification(
-          `${person.name} was already deleted from server`
-        )
+      setNotification(error.response.data.error)
         setTimeout(() => {
           setNotification(null)
-        }, 3000)
-      setPersons(persons.filter(p => p.id !== id))
+        }, 5000)
+      personService.getAll().then((initialPersons) => {
+        setPersons(initialPersons)
+      })
     })
   }
 
@@ -83,13 +84,13 @@ const App = () => {
     })
     .catch(error => {
       setNotifType(false)
-      setNotification(
-          `${person.name} was already deleted from server`
-        )
+      setNotification(error.response.data.error)
         setTimeout(() => {
           setNotification(null)
-        }, 3000)
-      setPersons(persons.filter(p => p.id !== person.id))
+        }, 5000)
+      personService.getAll().then((initialPersons) => {
+        setPersons(initialPersons)
+      })
     })
     setNewName('')
     setNewNumber('')
@@ -120,6 +121,13 @@ const App = () => {
         setTimeout(() => {
           setNotification(null)
         }, 3000)
+    })
+    .catch(error => {
+      setNotifType(false)
+      setNotification(error.response.data.error)
+        setTimeout(() => {
+          setNotification(null)
+        }, 5000)
     })
   }
 

@@ -10,4 +10,13 @@ content-type: application/json
 }
 
 ###
-DELETE http://localhost:3001/api/persons/2
+DELETE http://localhost:3001/api/persons/6936ac827c14a9a130ef8742
+
+###
+PUT http://localhost:3001/api/persons/6936c914563f1dc0c6e691c7 HTTP/1.1
+content-type: application/json
+
+{ 
+    "name": "Art Hellas",
+    "number": "test"
+}
