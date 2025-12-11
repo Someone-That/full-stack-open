@@ -1,8 +1,9 @@
-GET http://localhost:3003/api/blogs
+GET http://localhost:3003/api/users
 
 ###
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpZCI6IjY5M2FhMWUyZjgxMDc2YjUxYzMwZWU2OCIsImlhdCI6MTc2NTQ1MDIyMH0.kYWCrxvythcrdjjGNtWj4-oc5oX-2lQo1F857S9plPs
 
 {
   "title": "test",
@@ -10,3 +11,27 @@ Content-Type: application/json
   "url": "http://example.com",
   "likes": 10
 }
+
+###
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+  "username": "root",
+  "password": "salainen"
+}
+
+###
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+    "username": "test",
+    "name": "tester",
+    "password": "test"
+}
+
+###
+DELETE http://localhost:3003/api/blogs/693abbfe93e2af7d45518d52
+// root's password: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjY5M2E5YjM5YTE3NDJlMzExNzNlNTc5YSIsImlhdCI6MTc2NTQ1NTY3Nn0.fPXkQfWx8f1Mad69WeIf1kPp0h41TDs5tT9W7ij--JE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJpZCI6IjY5M2FhMWUyZjgxMDc2YjUxYzMwZWU2OCIsImlhdCI6MTc2NTQ1MDIyMH0.kYWCrxvythcrdjjGNtWj4-oc5oX-2lQo1F857S9plPs
