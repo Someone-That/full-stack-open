@@ -39,12 +39,7 @@ blogsRouter.post('/', userExtractor, async (request, response) => {
 })
 
 blogsRouter.delete('/:id', userExtractor, async (request, response) => {
-  // verify token
-  const decodedToken = jwt.verify(request.token, process.env.SECRET)
-  if (!decodedToken.id) {
-    return response.status(401).json({ error: 'token invalid' })
-  }
-  const user = await User.findById(decodedToken.id)
+  const user = request.user
 
   // verify user
   if (!user) {
@@ -52,7 +47,7 @@ blogsRouter.delete('/:id', userExtractor, async (request, response) => {
   }
 
   const blogToDelete = await Blog.findById(request.params.id)
-  if (blogToDelete.user.toString() !== decodedToken.id) {
+  if (blogToDelete.user.toString() !== user.id) {
     return response.status(400).json({ error: 'UserId doesnt match the author' })
   }
   
@@ -62,7 +57,13 @@ blogsRouter.delete('/:id', userExtractor, async (request, response) => {
   response.status(204).end()
 })
 
-blogsRouter.put('/:id', async (request, response, next) => {
+blogsRouter.put('/:id', userExtractor, async (request, response, next) => {
+  const user = request.user
+
+  // verify user
+  if (!user) {
+    return response.status(400).json({ error: 'UserId missing or not valid' })
+  }
   const { title, author, url, likes } = request.body
 
   const blog = await Blog.findById(request.params.id)

@@ -1,13 +1,13 @@
-import Notification from "./Notification"
+import Notification from './Notification'
 
 const LoginForm = ({
-   handleSubmit,
-   handleUsernameChange,
-   handlePasswordChange,
-   username,
-   password,
-   notification
-  }) => {
+  handleSubmit,
+  handleUsernameChange,
+  handlePasswordChange,
+  username,
+  password,
+  notification
+}) => {
   return (
     <div>
       <h2>Login</h2>
@@ -27,7 +27,7 @@ const LoginForm = ({
             value={password}
             onChange={handlePasswordChange}
           />
-      </div>
+        </div>
         <button type="submit">login</button>
       </form>
     </div>
