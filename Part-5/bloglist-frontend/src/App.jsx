@@ -73,7 +73,7 @@ const App = () => {
     try {
       blog.likes += 1
       await blogService.update(blog.id, blog)
-      // resetBlogs()
+      await resetBlogs()
       notifyWith(`successfully liked blog: ${blog.title} by ${blog.author}`)
     } catch (error) {
       notifyWith(error.response.data.error, true)

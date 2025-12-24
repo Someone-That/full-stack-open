@@ -25,9 +25,9 @@ const Blog = ({ blog, user, addLike, deleteBlog }) => {
       </div>
       <div style={showWhenVisible} id='url-likes'>
         {blog.url} <br />
-        likes: {blog.likes} <button onClick={() => addLike(blog)}>like</button> <br />
+        <div id='likes'>likes: {blog.likes}</div> <button onClick={() => addLike(blog)}>like</button> <br />
         {user.name} <br />
-        { user.id === blog.user.id ? <button onClick={() => deleteBlog(blog)}>delete</button> : ''}
+        { user.id === (blog.user.id ? blog.user.id : blog.user) ? <button onClick={() => deleteBlog(blog)}>delete</button> : ''}
       </div>
     </div>
   )}
